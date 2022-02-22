@@ -11,7 +11,7 @@ import SwiftUI
 struct PolyCookApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePage()
         }
     }
 }
