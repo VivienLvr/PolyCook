@@ -24,6 +24,7 @@
 		1ECBC3C927BE9C0A00800035 /* StageDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3C827BE9C0A00800035 /* StageDescription.swift */; };
 		1ECBC3CB27BE9E2A00800035 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CA27BE9E2A00800035 /* Recipe.swift */; };
 		1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */; };
+		1ECBC3D027C4F33400800035 /* IngredientsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		1ECBC3C827BE9C0A00800035 /* StageDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDescription.swift; sourceTree = "<group>"; };
 		1ECBC3CA27BE9E2A00800035 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailsView.swift; sourceTree = "<group>"; };
+		1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				1ECBC38827BE7AC300800035 /* PolyCookApp.swift */,
+				1ECBC3CE27C4F30400800035 /* ViewModels */,
 				1ECBC3C127BE90BF00800035 /* Models */,
 				1ECBC3BE27BE903900800035 /* Views */,
 				1ECBC38C27BE7AC500800035 /* Assets.xcassets */,
@@ -178,6 +181,14 @@
 				1ECBC3CA27BE9E2A00800035 /* Recipe.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1ECBC3CE27C4F30400800035 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +334,7 @@
 				1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */,
 				1ECBC38B27BE7AC300800035 /* HomePage.swift in Sources */,
 				1ECBC3C727BE9B8E00800035 /* Progression.swift in Sources */,
+				1ECBC3D027C4F33400800035 /* IngredientsListViewModel.swift in Sources */,
 				1ECBC3C927BE9C0A00800035 /* StageDescription.swift in Sources */,
 				1ECBC38927BE7AC300800035 /* PolyCookApp.swift in Sources */,
 				1ECBC3C527BE9A7800800035 /* Stage.swift in Sources */,
