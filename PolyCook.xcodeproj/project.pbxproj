@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		1ECBC38927BE7AC300800035 /* PolyCookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC38827BE7AC300800035 /* PolyCookApp.swift */; };
-		1ECBC38B27BE7AC300800035 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC38A27BE7AC300800035 /* ContentView.swift */; };
+		1ECBC38B27BE7AC300800035 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC38A27BE7AC300800035 /* HomePage.swift */; };
 		1ECBC38D27BE7AC500800035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ECBC38C27BE7AC500800035 /* Assets.xcassets */; };
 		1ECBC39027BE7AC500800035 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ECBC38F27BE7AC500800035 /* Preview Assets.xcassets */; };
 		1ECBC39A27BE7AC500800035 /* PolyCookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC39927BE7AC500800035 /* PolyCookTests.swift */; };
 		1ECBC3A427BE7AC500800035 /* PolyCookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3A327BE7AC500800035 /* PolyCookUITests.swift */; };
 		1ECBC3A627BE7AC500800035 /* PolyCookUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3A527BE7AC500800035 /* PolyCookUITestsLaunchTests.swift */; };
+		1ECBC3B327BE7C6200800035 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1ECBC3B227BE7C6200800035 /* GoogleService-Info.plist */; };
+		1ECBC3B627BE82A300800035 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1ECBC3B527BE82A300800035 /* FirebaseFirestore */; };
+		1ECBC3B827BE82A300800035 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 1ECBC3B727BE82A300800035 /* FirebaseFirestoreSwift-Beta */; };
+		1ECBC3C027BE905800800035 /* IngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3BF27BE905800800035 /* IngredientsListView.swift */; };
+		1ECBC3C327BE90D300800035 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3C227BE90D300800035 /* Ingredient.swift */; };
+		1ECBC3C527BE9A7800800035 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3C427BE9A7800800035 /* Stage.swift */; };
+		1ECBC3C727BE9B8E00800035 /* Progression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3C627BE9B8E00800035 /* Progression.swift */; };
+		1ECBC3C927BE9C0A00800035 /* StageDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3C827BE9C0A00800035 /* StageDescription.swift */; };
+		1ECBC3CB27BE9E2A00800035 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CA27BE9E2A00800035 /* Recipe.swift */; };
+		1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +46,7 @@
 /* Begin PBXFileReference section */
 		1ECBC38527BE7AC300800035 /* PolyCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECBC38827BE7AC300800035 /* PolyCookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyCookApp.swift; sourceTree = "<group>"; };
-		1ECBC38A27BE7AC300800035 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1ECBC38A27BE7AC300800035 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		1ECBC38C27BE7AC500800035 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ECBC38F27BE7AC500800035 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1ECBC39527BE7AC500800035 /* PolyCookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyCookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +54,14 @@
 		1ECBC39F27BE7AC500800035 /* PolyCookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PolyCookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECBC3A327BE7AC500800035 /* PolyCookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyCookUITests.swift; sourceTree = "<group>"; };
 		1ECBC3A527BE7AC500800035 /* PolyCookUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyCookUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1ECBC3B227BE7C6200800035 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1ECBC3BF27BE905800800035 /* IngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListView.swift; sourceTree = "<group>"; };
+		1ECBC3C227BE90D300800035 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		1ECBC3C427BE9A7800800035 /* Stage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		1ECBC3C627BE9B8E00800035 /* Progression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progression.swift; sourceTree = "<group>"; };
+		1ECBC3C827BE9C0A00800035 /* StageDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDescription.swift; sourceTree = "<group>"; };
+		1ECBC3CA27BE9E2A00800035 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ECBC3B627BE82A300800035 /* FirebaseFirestore in Frameworks */,
+				1ECBC3B827BE82A300800035 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,8 +115,11 @@
 			isa = PBXGroup;
 			children = (
 				1ECBC38827BE7AC300800035 /* PolyCookApp.swift */,
-				1ECBC38A27BE7AC300800035 /* ContentView.swift */,
+				1ECBC3C127BE90BF00800035 /* Models */,
+				1ECBC3BE27BE903900800035 /* Views */,
 				1ECBC38C27BE7AC500800035 /* Assets.xcassets */,
+				1ECBC3B227BE7C6200800035 /* GoogleService-Info.plist */,
+				1ECBC3B927BE83B700800035 /* Images */,
 				1ECBC38E27BE7AC500800035 /* Preview Content */,
 			);
 			path = PolyCook;
@@ -127,6 +150,36 @@
 			path = PolyCookUITests;
 			sourceTree = "<group>";
 		};
+		1ECBC3B927BE83B700800035 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			path = "Preview Content/Images";
+			sourceTree = "<group>";
+		};
+		1ECBC3BE27BE903900800035 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1ECBC38A27BE7AC300800035 /* HomePage.swift */,
+				1ECBC3BF27BE905800800035 /* IngredientsListView.swift */,
+				1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1ECBC3C127BE90BF00800035 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1ECBC3C227BE90D300800035 /* Ingredient.swift */,
+				1ECBC3C427BE9A7800800035 /* Stage.swift */,
+				1ECBC3C627BE9B8E00800035 /* Progression.swift */,
+				1ECBC3C827BE9C0A00800035 /* StageDescription.swift */,
+				1ECBC3CA27BE9E2A00800035 /* Recipe.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +196,10 @@
 			dependencies = (
 			);
 			name = PolyCook;
+			packageProductDependencies = (
+				1ECBC3B527BE82A300800035 /* FirebaseFirestore */,
+				1ECBC3B727BE82A300800035 /* FirebaseFirestoreSwift-Beta */,
+			);
 			productName = PolyCook;
 			productReference = 1ECBC38527BE7AC300800035 /* PolyCook.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +272,9 @@
 				Base,
 			);
 			mainGroup = 1ECBC37C27BE7AC300800035;
+			packageReferences = (
+				1ECBC3B427BE82A300800035 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1ECBC38627BE7AC300800035 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +293,7 @@
 			files = (
 				1ECBC39027BE7AC500800035 /* Preview Assets.xcassets in Resources */,
 				1ECBC38D27BE7AC500800035 /* Assets.xcassets in Resources */,
+				1ECBC3B327BE7C6200800035 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +318,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ECBC38B27BE7AC300800035 /* ContentView.swift in Sources */,
+				1ECBC3C327BE90D300800035 /* Ingredient.swift in Sources */,
+				1ECBC3C027BE905800800035 /* IngredientsListView.swift in Sources */,
+				1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */,
+				1ECBC38B27BE7AC300800035 /* HomePage.swift in Sources */,
+				1ECBC3C727BE9B8E00800035 /* Progression.swift in Sources */,
+				1ECBC3C927BE9C0A00800035 /* StageDescription.swift in Sources */,
 				1ECBC38927BE7AC300800035 /* PolyCookApp.swift in Sources */,
+				1ECBC3C527BE9A7800800035 /* Stage.swift in Sources */,
+				1ECBC3CB27BE9E2A00800035 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +653,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1ECBC3B427BE82A300800035 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1ECBC3B527BE82A300800035 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ECBC3B427BE82A300800035 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		1ECBC3B727BE82A300800035 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1ECBC3B427BE82A300800035 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1ECBC37D27BE7AC300800035 /* Project object */;
 }
