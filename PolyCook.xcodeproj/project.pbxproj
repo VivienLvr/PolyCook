@@ -25,6 +25,7 @@
 		1ECBC3CB27BE9E2A00800035 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CA27BE9E2A00800035 /* Recipe.swift */; };
 		1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */; };
 		1ECBC3D027C4F33400800035 /* IngredientsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */; };
+		1ECBC3D227C6B04000800035 /* IngredientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3D127C6B04000800035 /* IngredientViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		1ECBC3CA27BE9E2A00800035 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailsView.swift; sourceTree = "<group>"; };
 		1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsListViewModel.swift; sourceTree = "<group>"; };
+		1ECBC3D127C6B04000800035 /* IngredientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */,
+				1ECBC3D127C6B04000800035 /* IngredientViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				1ECBC3D027C4F33400800035 /* IngredientsListViewModel.swift in Sources */,
 				1ECBC3C927BE9C0A00800035 /* StageDescription.swift in Sources */,
 				1ECBC38927BE7AC300800035 /* PolyCookApp.swift in Sources */,
+				1ECBC3D227C6B04000800035 /* IngredientViewModel.swift in Sources */,
 				1ECBC3C527BE9A7800800035 /* Stage.swift in Sources */,
 				1ECBC3CB27BE9E2A00800035 /* Recipe.swift in Sources */,
 			);
