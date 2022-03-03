@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Stage {
+class Stage: Codable {
     var id: String
     var title: String
     var duration: Int
@@ -21,7 +21,7 @@ class Stage {
     }
 }
 
-struct QuantityIngredient {
+struct QuantityIngredient: Codable {
     var quantity: Int
     var ingredient: Ingredient
 }

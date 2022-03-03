@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct IngredientsListView: View {
-    @StateObject var VM = IngredientListViewModel([
-        Ingredient(id: "1", name: "Poire"),
-        Ingredient(id: "2", name: "Pomme"),
-        Ingredient(id: "3", name: "Sucre")
+struct RecipesListView: View {
+    @StateObject var VM = RecipeListViewModel([
+        Recipe(id: "1", name: "Recette 1", category: .cake),
+        Recipe(id: "2", name: "Recette 2", category: .cake),
+        Recipe(id: "3", name: "Recette 3", category: .cake)
     ])
     
     @State private var editMode = EditMode.inactive
@@ -24,7 +24,7 @@ struct IngredientsListView: View {
         VStack {
             List {
                 ForEach(searchResults, id: \.id) { item in
-                    NavigationLink(destination: IngredientsDetailsView(ingredient: item, ingredients: VM.ingredients)) {
+                    NavigationLink(destination: RecipeDetailsView(recipe: item, recipes: VM.recipes)) {
                         VStack(alignment: .leading){
                             //Text(item.id ?? "no id")
                             Text(item.name)
@@ -42,11 +42,11 @@ struct IngredientsListView: View {
                     
                 }
                 .alert(isPresented: self.$showingAlert) {
-                    Alert(title: Text("Confirmation"), message: Text("Êtes-vous sûr de vouloir supprimer cet ingrédient ?\n Cette action est irréversible."),
+                    Alert(title: Text("Confirmation"), message: Text("Êtes-vous sûr de vouloir supprimer cette recette ?\n Cette action est irréversible."),
                           primaryButton: .destructive(Text("Confirmer"), action:  {
                         if let indexSet = self.deleteIndexSet {
                             for index in indexSet {
-                                let removed = self.VM.ingredients.remove(at: index)
+                                let removed = self.VM.recipes.remove(at: index)
                                 self.VM.delete(removed)
                             }
                         }
@@ -54,7 +54,7 @@ struct IngredientsListView: View {
                           secondaryButton: .cancel(Text("Annuler")))
                 }
             }
-            .navigationTitle("Liste des ingrédients")
+            .navigationTitle("Liste des recettes")
             HStack {
                 Spacer()
                 EditButton()
@@ -81,25 +81,25 @@ struct IngredientsListView: View {
     }
     
     func onAdd() {
-        VM.listIngredients()
-        print(VM.ingredients.count)
-        let newIngred = Ingredient(id: "", name: "new ingredient")
-        VM.ingredients.append(newIngred)
-        VM.insertIngredient(ingredient: newIngred)
-        print("ingredient added")
+        //VM.listIngredients()
+        print(VM.recipes.count)
+        let newRec = Recipe(id: "", name: "new recipe", category: .other)
+        VM.recipes.append(newRec)
+        VM.insertRecipe(recipe: newRec)
+        print("recipe added")
     }
     
-    var searchResults: [Ingredient] {
+    var searchResults: [Recipe] {
             if searchText.isEmpty {
-                return VM.ingredients
+                return VM.recipes
             } else {
-                return VM.ingredients.filter { $0.name.range(of: searchText, options: .caseInsensitive) != nil }
+                return VM.recipes.filter { $0.name.range(of: searchText, options: .caseInsensitive) != nil }
             }
         }
 }
 
-struct IngredientsListView_Previews: PreviewProvider {
+struct RecipesListView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientsListView()
+        RecipesListView()
     }
 }

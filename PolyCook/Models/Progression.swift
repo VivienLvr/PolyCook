@@ -7,10 +7,10 @@
 
 import Foundation
 
-class Progression {
-    var stages : [Stage]
+class Progression: Codable {
+    var stages : [StageDescription]
     
-    init(stages: [Stage]) {
+    init(stages: [StageDescription]) {
         self.stages = stages
     }
 }

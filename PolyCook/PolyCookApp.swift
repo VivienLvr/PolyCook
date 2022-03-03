@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct PolyCookApp: App {
@@ -13,5 +14,9 @@ struct PolyCookApp: App {
         WindowGroup {
             HomePage()
         }
+    }
+    
+    init() {
+        FirebaseApp.configure()
     }
 }
