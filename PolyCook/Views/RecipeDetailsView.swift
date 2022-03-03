@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct IngredientsDetailsView: View {
-    @State var ingredient: Ingredient
-    var ingredients: [Ingredient]
-    @ObservedObject var VM: IngredientViewModel
-    @ObservedObject var ListVM: IngredientListViewModel
-    var intent = IngredientIntent()
+struct RecipeDetailsView: View {
+    @State var recipe: Recipe
+    var recipes: [Recipe]
+    @ObservedObject var VM: RecipeViewModel
+    @ObservedObject var ListVM: RecipeListViewModel
+    var intent = RecipeIntent()
     
-    init(ingredient: Ingredient, ingredients: [Ingredient]) {
-        self.ingredient = ingredient
-        self.ingredients = ingredients
-        self.VM = IngredientViewModel(from: ingredient)
-        self.ListVM = IngredientListViewModel(ingredients)
+    init(recipe: Recipe, recipes: [Recipe]) {
+        self.recipe = recipe
+        self.recipes = recipes
+        self.VM = RecipeViewModel(from: recipe)
+        self.ListVM = RecipeListViewModel(recipes)
         self.intent.addObserver(viewModel: VM, listVM: ListVM)
     }
     
@@ -45,7 +45,7 @@ struct IngredientsDetailsView: View {
                         intent.updateList()
                     }
                     
-                Text("Catégorie : ")
+                /*Text("Catégorie : ")
                 Menu(VM.category.rawValue) {
                     ForEach(IngredientType.allCases, id: \.self) { type in
                         Button(type.rawValue, action: {
@@ -67,15 +67,13 @@ struct IngredientsDetailsView: View {
                             //intent.updateList()
                         }
                     Text("/ " + VM.unit.rawValue ?? "no unit")
-                }
-                Text("Stock : ")
-                Stepper("\(VM.stock)", onIncrement: {
-                    intent.intentToChange(stock: VM.stock + 1)
-                    //VM.stock += 1
+                }*/
+                Text("Nombre de couverts : ")
+                Stepper("\(VM.covers)", onIncrement: {
+                    intent.intentToChange(covers: VM.covers + 1)
                 },
                         onDecrement: {
-                    intent.intentToChange(stock: VM.stock - 1)
-                    //VM.stock -= 1
+                    intent.intentToChange(covers: VM.covers - 1)
                 })
             }
             .padding(30)
@@ -87,18 +85,8 @@ struct IngredientsDetailsView: View {
     }
 }
 
-struct IngredientsDetailsView_Previews: PreviewProvider {
+struct RecipeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientsDetailsView(ingredient: Ingredient(id: "0", name: "ingredient test", stock: 10), ingredients: [])
-    }
-}
-
-extension TextField {
-    func classicTextFieldStyle() -> some View {
-        self.padding(4)
-            .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.gray, lineWidth: 0.8)
-            )
+        RecipeDetailsView(recipe: Recipe(id: "0", name: "recipe test", covers: 10, category: .other), recipes: [])
     }
 }

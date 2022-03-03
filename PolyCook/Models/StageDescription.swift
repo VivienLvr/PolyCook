@@ -16,4 +16,8 @@ class StageDescription: Stage {
         self.phase = phase
         super.init(id: id, title: title, duration: duration, ingredients: ingredients)
     }
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
 }

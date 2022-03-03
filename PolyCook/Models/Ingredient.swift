@@ -9,13 +9,39 @@ import Foundation
 import FirebaseFirestoreSwift
 
 class Ingredient : Identifiable, Codable {
+    var observer: IngredientObserver?
+    
     @DocumentID var id: String? = UUID().uuidString
-    var name: String
-    var category: IngredientType
-    var unit: Unit
-    var stock : Int;
-    var unitPrice : Double;
-    var isAlergen : Bool;
+    var name: String {
+        didSet {
+            self.observer?.change(name: self.name)
+        }
+    }
+    var category: IngredientType {
+        didSet {
+            self.observer?.change(category: self.category)
+        }
+    }
+    var unit: Unit {
+        didSet {
+            self.observer?.change(unit: self.unit)
+        }
+    }
+    var stock : Int {
+        didSet {
+            self.observer?.change(stock: self.stock)
+        }
+    }
+    var unitPrice : Double {
+        didSet {
+            self.observer?.change(unitPrice: self.unitPrice)
+        }
+    }
+    var isAlergen : Bool {
+        didSet {
+            self.observer?.change(isAlergen: self.isAlergen)
+        }
+    }
     
     
     init(id: String, name: String, category: IngredientType = .autre,
@@ -42,7 +68,7 @@ class Ingredient : Identifiable, Codable {
 
 
 
-enum IngredientType: String, Codable {
+enum IngredientType: String, Codable, CaseIterable {
     case meat = "Viande"
     case fish = "Poissons et crustacés"
     case cremerie = "Crèmerie"
@@ -54,7 +80,7 @@ enum IngredientType: String, Codable {
 
 
 
-enum Unit: String, Codable {
+enum Unit: String, Codable, CaseIterable {
     case gramm = "g"
     case litre = "l"
     case piece = "Pièce"
@@ -90,4 +116,14 @@ struct IngredientDTO : Identifiable, Codable {
         self.unitPrice = unitPrice
         self.isAlergen = isAlergen
     }
+}
+
+protocol IngredientObserver {
+    //func change(trackId: Int)
+    func change(name: String)
+    func change(category: IngredientType)
+    func change(unit: Unit)
+    func change(unitPrice: Double)
+    func change(stock: Int)
+    func change(isAlergen: Bool)
 }

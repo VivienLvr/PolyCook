@@ -16,7 +16,7 @@ struct HomePage: View {
                         Text("Bienvenue sur PolyCook")
                             .font(.title).foregroundColor(.white).bold()
                         NavigationLink(
-                            destination: IngredientsListView(),
+                            destination: RecipesListView(),
                                     label: {
                                         Text("Accéder aux recettes")
                                             .padding(10)
@@ -28,7 +28,7 @@ struct HomePage: View {
                             }
                         .padding()
                     }
-            }
+        }
     }
 }
 

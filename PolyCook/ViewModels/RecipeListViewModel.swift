@@ -10,13 +10,13 @@ import SwiftUI
 import Combine
 import FirebaseFirestore
 
-class IngredientListViewModel : ObservableObject, Subscriber {
+class RecipeListViewModel : ObservableObject, Subscriber {
     private let firestore = Firestore.firestore()
     
     //@Published var listDTO: [IngredientDTO] = []
-    @Published var ingredients: [Ingredient] = []
+    @Published var recipes: [Recipe] = []
     
-    init(_ ingredients: [Ingredient]) {
+    init(_ recipes: [Recipe]) {
         //self.listDTO = ingredients
         //fetchData()
         /*self.listDTO.forEach({ item in
@@ -26,23 +26,23 @@ class IngredientListViewModel : ObservableObject, Subscriber {
     }
 
     
-    typealias Input = IngredListIntentState
+    typealias Input = RecipeListIntentState
     typealias Failure = Never
     
     func fetchData() {
-        firestore.collection("ingredient").addSnapshotListener {
+        firestore.collection("recipe").addSnapshotListener {
             (data, error) in
             guard let documents = data?.documents else {
                 return // no document
             }
             print("document count", documents.count)
-            self.ingredients = documents.compactMap{ (doc) ->
-                Ingredient? in
-                let ingred: Ingredient? = try? doc.data(as: Ingredient.self)
-                ingred?.id = doc.documentID
-                return ingred
+            self.recipes = documents.compactMap{ (doc) ->
+                Recipe? in
+                let recipe: Recipe? = try? doc.data(as: Recipe.self)
+                recipe?.id = doc.documentID
+                return recipe
             }
-            print(self.ingredients.count)
+            print(self.recipes.count)
         }
         
     }
@@ -57,7 +57,7 @@ class IngredientListViewModel : ObservableObject, Subscriber {
     }
 
      // Activée à chaque send() du publisher :
-    func receive(_ input: IngredListIntentState) -> Subscribers.Demand {
+    func receive(_ input: RecipeListIntentState) -> Subscribers.Demand {
        print("vm -> intent \(input)")
         switch input {
         case .ready:
@@ -70,13 +70,13 @@ class IngredientListViewModel : ObservableObject, Subscriber {
        return .none // on arrête de traiter cette demande et on attend un nouveau send
     }
     
-    func delete(_ ingred : Ingredient) {
-        if let id = ingred.id {
+    func delete(_ rec : Recipe) {
+        if let id = rec.id {
             print(id)
-            firestore.collection("ingredient").document(id).delete(completion: { err in
+            firestore.collection("recipe").document(id).delete(completion: { err in
                 if let err = err { print(err) }
                 else {
-                    print("ingredient deleted")
+                    print("recipe deleted")
                     self.objectWillChange.send()
                 }
             })
@@ -84,15 +84,15 @@ class IngredientListViewModel : ObservableObject, Subscriber {
         else { print("element to delete has no id") }
     }
     
-    func listIngredients() {
-        for ingred in ingredients {
-            print("\(ingred.name), id : \(ingred.id)")
+    /*func listIngredients() {
+        for recipe in recipes {
+            print("\(recipe.name), id : \(recipe.id)")
         }
-    }
+    }*/
     
-    func insertIngredient(ingredient: Ingredient) {
+    func insertRecipe(recipe: Recipe) {
         do {
-            let _ = try firestore.collection("ingredient").addDocument(from: ingredient)
+            let _ = try firestore.collection("recipe").addDocument(from: recipe)
             print("data writen to the DB")
         }
         catch {
