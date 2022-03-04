@@ -15,9 +15,9 @@ class Recipe: Identifiable, Codable {
     var covers : Int
     var priceCoef : Double
     var category : RecipeType
-    var progression : Progression?
+    var progression : Progression
     
-    init(id: String, name: String, author: String = "unknown", covers: Int = 0, priceCoef: Double = 0, category: RecipeType, progression: Progression? = Progression(stages: [])) {
+    init(id: String, name: String, author: String = "unknown", covers: Int = 0, priceCoef: Double = 0, category: RecipeType, progression: Progression = Progression(stages: [])) {
         self.id = id
         self.name = name
         self.author = author
@@ -36,11 +36,11 @@ class Recipe: Identifiable, Codable {
         case covers = "covers"
         case priceCoef = "priceCoef"
         case category = "category"
-        //case progression
+        case progression = "progression"
     }
 }
 
-enum RecipeType: String, Codable {
+enum RecipeType: String, Codable, CaseIterable {
     case cake = "Gateau"
     case sauce = "Sauce"
     case other = "Autre"

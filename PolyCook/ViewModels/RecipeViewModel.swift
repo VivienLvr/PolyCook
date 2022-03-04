@@ -57,27 +57,27 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
         case .nameChanging(let name):
             self.model.name = name
             print("vm: model name changed to '\(self.model.name)'")
-            writeData()
+            //writeData()
         case .authorChanging(let author):
             self.model.author = author
             print("vm: model author changed to '\(self.model.author)'")
-            writeData()
+            //writeData()
         case .coversChanging(let covers):
             self.model.covers = covers
             print("vm: model covers changed to '\(self.model.covers)'")
-            writeData()
+            //writeData()
         case .priceCoefChanging(let priceCoef):
             self.model.priceCoef = priceCoef
             print("vm: model priceCoef changed to '\(self.model.priceCoef)'")
-            writeData()
+            //writeData()
         case .categoryChanging(let category):
             self.model.category = category
             print("vm: model category changed to '\(self.model.category)'")
-            writeData()
+            //writeData()
         case .progressionChanging(let progression):
             self.model.progression = progression
             print("vm: model progression changed to '\(self.model.progression)'")
-            writeData()
+            //writeData()
         
        }
        return .none // on arrête de traiter cette demande et on attend un nouveau send

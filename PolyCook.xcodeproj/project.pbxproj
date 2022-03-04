@@ -32,6 +32,7 @@
 		1ECBC3DB27CFEA2300800035 /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3DA27CFEA2300800035 /* RecipeDetailsView.swift */; };
 		1ECBC3DD27CFEAD300800035 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3DC27CFEAD300800035 /* RecipeViewModel.swift */; };
 		1ECBC3DF27CFECDF00800035 /* RecipeIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3DE27CFECDF00800035 /* RecipeIntent.swift */; };
+		1ECBC3E127D291BE00800035 /* StageDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC3E027D291BE00800035 /* StageDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		1ECBC3DA27CFEA2300800035 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
 		1ECBC3DC27CFEAD300800035 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		1ECBC3DE27CFECDF00800035 /* RecipeIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeIntent.swift; sourceTree = "<group>"; };
+		1ECBC3E027D291BE00800035 /* StageDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				1ECBC38A27BE7AC300800035 /* HomePage.swift */,
 				1ECBC3DA27CFEA2300800035 /* RecipeDetailsView.swift */,
+				1ECBC3E027D291BE00800035 /* StageDetailsView.swift */,
 				1ECBC3BF27BE905800800035 /* IngredientsListView.swift */,
 				1ECBC3D627CF707300800035 /* RecipesListView.swift */,
 				1ECBC3CC27BE9F9C00800035 /* IngredientDetailsView.swift */,
@@ -362,6 +365,7 @@
 				1ECBC3D727CF707300800035 /* RecipesListView.swift in Sources */,
 				1ECBC3D527CB88C000800035 /* IngredientIntent.swift in Sources */,
 				1ECBC3C327BE90D300800035 /* Ingredient.swift in Sources */,
+				1ECBC3E127D291BE00800035 /* StageDetailsView.swift in Sources */,
 				1ECBC3DD27CFEAD300800035 /* RecipeViewModel.swift in Sources */,
 				1ECBC3C027BE905800800035 /* IngredientsListView.swift in Sources */,
 				1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */,
