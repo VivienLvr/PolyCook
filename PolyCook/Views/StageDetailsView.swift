@@ -1,21 +1,23 @@
 //
-//  IngredientDetailsView.swift
+//  StageDetailsView.swift
 //  PolyCook
 //
-//  Created by Vivien Levacher on 17/02/2022.
+//  Created by Vivien Levacher on 04/03/2022.
 //
 
 import SwiftUI
 
-struct RecipeDetailsView: View {
+struct StageDetailsView: View {
     @State var recipe: Recipe
+    @State var stage: Stage
     var recipes: [Recipe]
     @ObservedObject var VM: RecipeViewModel
     @ObservedObject var ListVM: RecipeListViewModel
     var intent = RecipeIntent()
     var stages: [Stage]
     
-    init(recipe: Recipe, recipes: [Recipe]) {
+    init(stage: Stage, recipe: Recipe, recipes: [Recipe]) {
+        self.stage = stage
         self.recipe = recipe
         self.recipes = recipes
         self.VM = RecipeViewModel(from: recipe)
@@ -41,16 +43,16 @@ struct RecipeDetailsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
+            //Spacer()
             LazyVGrid(columns: cols, spacing: 15) {
-                Text("Nom : ")
-                TextField("name", text: $VM.name)
+                Text("Titre de l'étape : ")
+                TextField("title", text: $stage.title)
                     .classicTextFieldStyle()
                     .onSubmit {
-                        intent.intentToChange(name: VM.name)
+                        intent.intentToChange(progression: recipe.progression)
                         intent.updateList()
                     }
-                Text("Auteur : ")
+                /*Text("Auteur : ")
                 TextField("author", text: $VM.author)
                     .classicTextFieldStyle()
                     .onSubmit {
@@ -87,28 +89,26 @@ struct RecipeDetailsView: View {
                             intent.intentToChange(priceCoef: VM.priceCoef)
                             //intent.updateList()
                         }
-                }
+                }*/
             }
             //.padding(30)
                             //.font(.custom("", size: 15))
             Spacer().frame(height: 30)
-            Text("Progression").font(.title)
+            /*Text("Progression").font(.title)
             List {
                 ForEach(stages.indices) { i in
-                    NavigationLink(destination: StageDetailsView(stage: stages[i], recipe: self.recipe, recipes: self.recipes)) {
-                        Text("\(i+1) - \(stages[i].title) (\(stages[i].duration ?? 5) min)")
-                    }
+                    Text("\(i+1) - \(stages[i].title) (\(stages[i].duration ?? 5) min)")
                 }
-            }
+            }*/
         }
-        .navigationTitle("Détails")
+        .navigationTitle("Détails étape")
         .padding(30)
     }
 }
 
-struct RecipeDetailsView_Previews: PreviewProvider {
+struct StageDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeDetailsView(recipe: Recipe(id: "0", name: "recipe test", covers: 10, category: .other, progression: Progression(stages: [
+        StageDetailsView(stage: Stage(id: "", title: "Première étape", duration: 10, description: "", ingredients: []), recipe: Recipe(id: "0", name: "recipe test", covers: 10, category: .other, progression: Progression(stages: [
             Stage(id: "1", title: "stage 1", duration: 10, description: "", ingredients: [])
             , Stage(id: "2", title: "stage 2", duration: 20, description: "", ingredients: [])
         ]))
