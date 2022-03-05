@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EB33E8127D362D9007F02C7 /* StageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB33E8027D362D9007F02C7 /* StageListViewModel.swift */; };
+		1EB33E8327D364BF007F02C7 /* StageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB33E8227D364BF007F02C7 /* StageIntent.swift */; };
 		1ECBC38927BE7AC300800035 /* PolyCookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC38827BE7AC300800035 /* PolyCookApp.swift */; };
 		1ECBC38B27BE7AC300800035 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC38A27BE7AC300800035 /* HomePage.swift */; };
 		1ECBC38D27BE7AC500800035 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ECBC38C27BE7AC500800035 /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EB33E8027D362D9007F02C7 /* StageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageListViewModel.swift; sourceTree = "<group>"; };
+		1EB33E8227D364BF007F02C7 /* StageIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageIntent.swift; sourceTree = "<group>"; };
 		1ECBC38527BE7AC300800035 /* PolyCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PolyCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECBC38827BE7AC300800035 /* PolyCookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolyCookApp.swift; sourceTree = "<group>"; };
 		1ECBC38A27BE7AC300800035 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				1ECBC3CF27C4F33400800035 /* IngredientsListViewModel.swift */,
 				1ECBC3D827CF710700800035 /* RecipeListViewModel.swift */,
 				1ECBC3DC27CFEAD300800035 /* RecipeViewModel.swift */,
+				1EB33E8027D362D9007F02C7 /* StageListViewModel.swift */,
 				1ECBC3D127C6B04000800035 /* IngredientViewModel.swift */,
 			);
 			path = ViewModels;
@@ -218,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				1ECBC3D427CB88C000800035 /* IngredientIntent.swift */,
+				1EB33E8227D364BF007F02C7 /* StageIntent.swift */,
 				1ECBC3DE27CFECDF00800035 /* RecipeIntent.swift */,
 			);
 			path = Intents;
@@ -371,8 +377,10 @@
 				1ECBC3CD27BE9F9C00800035 /* IngredientDetailsView.swift in Sources */,
 				1ECBC38B27BE7AC300800035 /* HomePage.swift in Sources */,
 				1ECBC3DB27CFEA2300800035 /* RecipeDetailsView.swift in Sources */,
+				1EB33E8327D364BF007F02C7 /* StageIntent.swift in Sources */,
 				1ECBC3DF27CFECDF00800035 /* RecipeIntent.swift in Sources */,
 				1ECBC3C727BE9B8E00800035 /* Progression.swift in Sources */,
+				1EB33E8127D362D9007F02C7 /* StageListViewModel.swift in Sources */,
 				1ECBC3D027C4F33400800035 /* IngredientsListViewModel.swift in Sources */,
 				1ECBC3C927BE9C0A00800035 /* StageDescription.swift in Sources */,
 				1ECBC38927BE7AC300800035 /* PolyCookApp.swift in Sources */,
