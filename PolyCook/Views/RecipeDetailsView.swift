@@ -15,6 +15,8 @@ struct RecipeDetailsView: View {
     var intent = RecipeIntent()
     var stages: [Stage]
     
+    @State private var editMode = EditMode.inactive
+    
     init(recipe: Recipe, recipes: [Recipe]) {
         self.recipe = recipe
         self.recipes = recipes
@@ -100,9 +102,32 @@ struct RecipeDetailsView: View {
                     }
                 }
             }
+            HStack {
+                Spacer()
+                EditButton()
+                Spacer()
+                //addButton
+                Spacer()
+            }
         }
         .navigationTitle("Détails")
         .padding(30)
+    }
+    
+    private var addButton: some View {
+        switch editMode {
+                case .inactive:
+                    return AnyView(Button(action: onAdd) { Text("Ajouter") })
+                default:
+                    return AnyView(EmptyView())
+                }
+    }
+    
+    func onAdd() {
+        let newStage = Stage(id: "", title: "Nouvelle étape", duration: 0, description: "", ingredients: [])
+        stages.append(newStage)
+        VM.insertRecipe(recipe: newRec)
+        print("recipe added")
     }
 }
 
