@@ -28,17 +28,22 @@ enum StageIntentState :  CustomStringConvertible {
     }
 }
 
+enum StageListIntentState :  Equatable {
+    case ready
+    case listUpdated
+}
+
 
 struct StageIntent {
     //var recipeVM: RecipeViewModel
     private var state = PassthroughSubject<StageIntentState, Never>()
-    private var stateRecipe = PassthroughSubject<RecipeIntentState, Never>()
+    private var stateList = PassthroughSubject<StageListIntentState, Never>()
     
-    func addObserver(viewModel: StageViewModel, recipeVM: RecipeViewModel){
+    func addObserver(viewModel: StageViewModel, listVM: StageListViewModel){
         // reçoit VM qui veut être au courant des actions demandées (Intent)
         // ce VM souscrit aux publications (modifications) de l'état
         self.state.subscribe(viewModel)
-        self.stateRecipe.subscribe(recipeVM)
+        self.stateList.subscribe(listVM)
         //self.recipeVM = recipeVM
     }
     
@@ -71,12 +76,12 @@ struct StageIntent {
         //      self.state.send(.ready)
     }
     
-    func updateRecipe() {
-        print("updateRecipe()")
-        self.stateRecipe.send(.progressionChanging)
+    func updateList() {
+        print("updateList() of stages")
+        self.stateList.send(.listUpdated)
     }
     
-    /*func beReady() {
-        self.listState.send(.ready)
-    }*/
+    func beReady() {
+        self.stateList.send(.ready)
+    }
 }

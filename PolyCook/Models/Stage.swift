@@ -8,13 +8,38 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-class Stage: Codable {
+class Stage: Identifiable, Codable {
     @DocumentID var id: String? = UUID().uuidString
-    var title: String
-    var duration: Int
-    var description: String
-    var ingredients: [QuantityIngredient]?
-    var phase: Int
+    var title: String {
+        didSet {
+            self.observer?.change(title: self.title)
+        }
+
+    }
+    var duration: Int {
+        didSet {
+            self.observer?.change(duration: self.duration)
+        }
+
+    }
+    var description: String {
+        didSet {
+            self.observer?.change(description: self.description)
+        }
+
+    }
+    var ingredients: [QuantityIngredient]? {
+        didSet {
+            self.observer?.change(ingredients: self.ingredients ?? [])
+        }
+
+    }
+    var phase: Int {
+        didSet {
+            self.observer?.change(phase: self.phase)
+        }
+
+    }
     
     init(id: String, title: String, duration: Int, description: String = "", ingredients: [QuantityIngredient]?, phase: Int) {
         self.id = id
@@ -61,7 +86,7 @@ class Stage: Codable {
         case duration
         case description
         case phase
-        //case ingredients
+        case ingredients
     }
 }
 
@@ -75,4 +100,5 @@ protocol StageOberver {
     func change(description: String)
     func change(duration: Int)
     func change(ingredients: [QuantityIngredient])
+    func change(phase: Int)
 }

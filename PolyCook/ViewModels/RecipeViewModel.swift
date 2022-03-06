@@ -73,8 +73,9 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
         case .categoryChanging(let category):
             self.model.category = category
             print("vm: model category changed to '\(self.model.category)'")
-            //writeData()
-        case .progressionChanging:
+            writeData()
+        case .progressionChanging(let stages):
+            self.progression = Progression(stages: stages)
             self.objectWillChange.send()
             self.model.progression = self.progression
             print("vm: model progression changed to '\(self.progression)'")
@@ -116,6 +117,28 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
         catch {
             print("erreur dans l'écriture dans la base de données")
         }
+    }
+    
+    func deleteStage(stages: [Stage]) {
+        /*let stageData: [String: Any] = [
+                    "title" : stage.title,
+                    "duration" : stage.duration,
+                    "description" : stage.description,
+                    "phase" : stage.phase
+                ]*/
+        self.model.progression.stages = stages
+        if let id = self.model.id {
+            print(id)
+            do {
+                try firestore.collection("recipe").document(id).setData(from: self.model)
+                print("stage deleted")
+                self.objectWillChange.send()
+            }
+            catch(let err) {
+                print(err)
+            }
+        }
+        else { print("element to delete has no id") }
     }
     
 }

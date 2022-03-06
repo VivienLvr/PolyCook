@@ -102,3 +102,13 @@ extension TextField {
             )
     }
 }
+
+extension TextEditor {
+    func classicTextEditorStyle() -> some View {
+        self.padding(4)
+            .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(Color.gray, lineWidth: 0.8)
+            )
+    }
+}

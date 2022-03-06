@@ -95,17 +95,28 @@ struct RecipeDetailsView: View {
             Spacer().frame(height: 30)
             Text("Progression").font(.title)
             List {
-                ForEach(VM.progression.stages.indices) { i in
-                    NavigationLink(destination: StageDetailsView(stage: VM.progression.stages[i], recipe: self.VM.model, recipes: self.recipes)) {
-                        Text("\(i+1) - \(VM.progression.stages[i].title) (\(VM.progression.stages[i].duration ?? 5) min)")
+                ForEach(VM.progression.stages) { stage in
+                    NavigationLink(destination: StageDetailsView(stage: stage, recipe: self.VM.model, index: VM.progression.stages.firstIndex(where: {$0.title == stage.title}) ?? -1, recipes: self.recipes, intent: self.intent)) {
+                        Text("\(VM.progression.stages.firstIndex(where: {$0.id == stage.id}) ?? 0+1) - \(stage.title) (\(stage.duration ?? 5) min)")
                     }
+                }
+                .onDelete{ indexSet in
+                    for index in indexSet {
+                        print(index)
+                        let removed = self.VM.progression.stages.remove(at: index)
+                        self.VM.deleteStage(stages: self.VM.progression.stages)
+                        self.intent.intentToChange(stages: VM.progression.stages)
+                    }
+                }
+                .onMove{ indexSet, index in
+                    
                 }
             }
             HStack {
                 Spacer()
                 EditButton()
                 Spacer()
-                //addButton
+                addButton
                 Spacer()
             }
         }
@@ -126,6 +137,7 @@ struct RecipeDetailsView: View {
         let newStage = Stage(id: "", title: "Nouvelle étape", duration: 0, description: "", ingredients: [], phase: 1)
         VM.progression.stages.append(newStage)
         VM.writeData()
+        self.intent.intentToChange(stages: VM.progression.stages)
         print("stage added")
     }
 }
