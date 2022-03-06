@@ -24,7 +24,7 @@ struct RecipesListView: View {
         VStack {
             List {
                 ForEach(searchResults, id: \.id) { item in
-                    NavigationLink(destination: RecipeDetailsView(recipe: item, recipes: VM.recipes)) {
+                    NavigationLink(destination: RecipeDetailsView(recette: item, recettes: VM.recipes)) {
                         VStack(alignment: .leading){
                             //Text(item.id ?? "no id")
                             Text(item.name)
@@ -83,7 +83,7 @@ struct RecipesListView: View {
     func onAdd() {
         //VM.listIngredients()
         print(VM.recipes.count)
-        let newRec = Recipe(id: "", name: "Nouvelle recette", category: .other)
+        let newRec = Recipe(id: "", name: "Nouvelle recette", author: "aucun", category: .other)
         VM.recipes.append(newRec)
         VM.insertRecipe(recipe: newRec)
         print("recipe added")

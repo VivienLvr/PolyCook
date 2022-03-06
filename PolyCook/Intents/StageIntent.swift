@@ -30,6 +30,7 @@ enum StageIntentState :  CustomStringConvertible {
 
 
 struct StageIntent {
+    //var recipeVM: RecipeViewModel
     private var state = PassthroughSubject<StageIntentState, Never>()
     private var stateRecipe = PassthroughSubject<RecipeIntentState, Never>()
     
@@ -38,50 +39,44 @@ struct StageIntent {
         // ce VM souscrit aux publications (modifications) de l'état
         self.state.subscribe(viewModel)
         self.stateRecipe.subscribe(recipeVM)
+        //self.recipeVM = recipeVM
     }
     
-    func intentToChange(name: String){
+    func intentToChange(title: String){
         // Fait deux choses en 1 instruction (cf specif Combine) :
         //  1) change la valeur (car on un CurrentVal... doit mémoriser la valeur en cours)
         // 2) avertit les subscriber que l'état a changé
-        print("intentToChange name")
-        self.state.send(.nameChanging(name))
+        print("intentToChange title")
+        self.state.send(.titleChanging(title))
         //      self.state.send(.ready)
     }
     
-    func intentToChange(author: String){
-        self.state.send(.authorChanging(author))
+    func intentToChange(description: String){
+        self.state.send(.descriptionChanging(description))
         //      self.state.send(.ready)
     }
     
-    func intentToChange(covers: Int){
-        self.state.send(.coversChanging(covers))
+    func intentToChange(duration: Int){
+        self.state.send(.durationChanging(duration))
         //      self.state.send(.ready)
     }
     
-    func intentToChange(priceCoef: Double){
-        self.state.send(.priceCoefChanging(priceCoef))
+    func intentToChange(phase: Int){
+        self.state.send(.phaseChanging(phase))
         //      self.state.send(.ready)
     }
     
-    func intentToChange(category: RecipeType){
-        self.state.send(.categoryChanging(category))
+    func intentToChange(ingredients: [QuantityIngredient]){
+        self.state.send(.ingredientsChanging(ingredients))
         //      self.state.send(.ready)
     }
     
-    func intentToChange(progression: Progression){
-        self.state.send(.progressionChanging(progression))
-        //      self.state.send(.ready)
+    func updateRecipe() {
+        print("updateRecipe()")
+        self.stateRecipe.send(.progressionChanging)
     }
     
-    
-    
-    func updateList() {
-        print("updateList()")
-        self.listState.send(.listUpdated)
-    }
-    
-    func beReady() {
+    /*func beReady() {
         self.listState.send(.ready)
-    }
+    }*/
 }

@@ -32,7 +32,7 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
         self.author = model.author //?? Unit.piece
         self.covers = model.covers //?? 0
         self.priceCoef = model.priceCoef
-        self.progression = model.progression ?? Progression(stages: [])
+        self.progression = model.progression// ?? Progression(stages: [])
         self.model.observer = self
     }
     
@@ -57,27 +57,28 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
         case .nameChanging(let name):
             self.model.name = name
             print("vm: model name changed to '\(self.model.name)'")
-            //writeData()
+            writeData()
         case .authorChanging(let author):
             self.model.author = author
             print("vm: model author changed to '\(self.model.author)'")
-            //writeData()
+            writeData()
         case .coversChanging(let covers):
             self.model.covers = covers
             print("vm: model covers changed to '\(self.model.covers)'")
-            //writeData()
+            writeData()
         case .priceCoefChanging(let priceCoef):
             self.model.priceCoef = priceCoef
             print("vm: model priceCoef changed to '\(self.model.priceCoef)'")
-            //writeData()
+            writeData()
         case .categoryChanging(let category):
             self.model.category = category
             print("vm: model category changed to '\(self.model.category)'")
             //writeData()
-        case .progressionChanging(let progression):
-            self.model.progression = progression
-            print("vm: model progression changed to '\(self.model.progression)'")
-            //writeData()
+        case .progressionChanging:
+            self.objectWillChange.send()
+            self.model.progression = self.progression
+            print("vm: model progression changed to '\(self.progression)'")
+            writeData()
         
        }
        return .none // on arrête de traiter cette demande et on attend un nouveau send

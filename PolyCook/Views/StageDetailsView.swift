@@ -11,22 +11,19 @@ struct StageDetailsView: View {
     @State var recipe: Recipe
     @State var stage: Stage
     var recipes: [Recipe]
-    @ObservedObject var VM: RecipeViewModel
-    @ObservedObject var ListVM: RecipeListViewModel
-    var intent = RecipeIntent()
+    @ObservedObject var VM: StageViewModel
+    @ObservedObject var recipeVM: RecipeViewModel
+    var intent = StageIntent()
     var stages: [Stage]
     
     init(stage: Stage, recipe: Recipe, recipes: [Recipe]) {
         self.stage = stage
         self.recipe = recipe
         self.recipes = recipes
-        self.VM = RecipeViewModel(from: recipe)
-        self.ListVM = RecipeListViewModel(recipes)
+        self.VM = StageViewModel(from: stage)
+        self.recipeVM = RecipeViewModel(from: recipe)
         stages = recipe.progression.stages ?? []
-        self.intent.addObserver(viewModel: VM, listVM: ListVM)
-        if let stages = recipe.progression.stages {
-            print(stages.count)
-        }
+        self.intent.addObserver(viewModel: VM, recipeVM: recipeVM)
         
     }
     
@@ -49,8 +46,8 @@ struct StageDetailsView: View {
                 TextField("title", text: $stage.title)
                     .classicTextFieldStyle()
                     .onSubmit {
-                        intent.intentToChange(progression: recipe.progression)
-                        intent.updateList()
+                        intent.intentToChange(title: stage.title)
+                        intent.updateRecipe()
                     }
                 /*Text("Auteur : ")
                 TextField("author", text: $VM.author)
@@ -108,9 +105,9 @@ struct StageDetailsView: View {
 
 struct StageDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        StageDetailsView(stage: Stage(id: "", title: "Première étape", duration: 10, description: "", ingredients: []), recipe: Recipe(id: "0", name: "recipe test", covers: 10, category: .other, progression: Progression(stages: [
-            Stage(id: "1", title: "stage 1", duration: 10, description: "", ingredients: [])
-            , Stage(id: "2", title: "stage 2", duration: 20, description: "", ingredients: [])
+        StageDetailsView(stage: Stage(id: "", title: "Première étape", duration: 10, description: "", ingredients: [], phase: 1), recipe: Recipe(id: "0", name: "recipe test", covers: 10, category: .other, progression: Progression(stages: [
+            Stage(id: "1", title: "stage 1", duration: 10, description: "", ingredients: [], phase: 1)
+            , Stage(id: "2", title: "stage 2", duration: 20, description: "", ingredients: [], phase: 2)
         ]))
             , recipes: [])
     }
