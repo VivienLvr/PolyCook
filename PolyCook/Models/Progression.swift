@@ -8,7 +8,7 @@
 import Foundation
 
 class Progression: Codable {
-    var duration: Int
+    var duration: Int?
         /*var sum = 0
         guard let stages = stages else {
             return sum
@@ -31,7 +31,7 @@ class Progression: Codable {
     required init(from decoder: Decoder) throws {
         print("decoding progression")
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        duration = try container.decode(Int.self, forKey: .duration)
+        //duration = try container.decode(Int.self, forKey: .duration)
         var stagesContainer = try container.nestedUnkeyedContainer(forKey: .stages)
         while !stagesContainer.isAtEnd {
             self.stages.append(try stagesContainer.decode(Stage.self))
@@ -39,5 +39,9 @@ class Progression: Codable {
         print("\(stages.count) stages decoded")
     }
     
-    private enum CodingKeys: String, CodingKey { case duration = "duration"; case stages = "stages" }
+    private enum CodingKeys: String, CodingKey {
+        //case duration = "duration"
+        case stages = "stages"
+        
+    }
 }

@@ -15,7 +15,7 @@ enum RecipeIntentState :  CustomStringConvertible {
     case coversChanging(Int)
     case priceCoefChanging(Double)
     case categoryChanging(RecipeType)
-    case progressionChanging
+    case progressionChanging([Stage])
     
     var description: String{
        switch self {
@@ -25,7 +25,7 @@ enum RecipeIntentState :  CustomStringConvertible {
             case .coversChanging(let covers): return "state: .coversChanging(\(covers))"
             case .priceCoefChanging(let coef): return "state: .priceCoefChanging(\(coef))"
             case .categoryChanging(let category): return "state: .categoryChanging(\(category))"
-            case .progressionChanging: return "state: .progressionChanging()"
+            case .progressionChanging(let stages): return "state: .progressionChanging(\(stages)"
        }
     }
 }
@@ -75,8 +75,8 @@ struct RecipeIntent {
         //      self.state.send(.ready)
     }
     
-    func intentToChange(/*progression: Progression*/){
-        self.state.send(.progressionChanging)
+    func intentToChange(stages: [Stage]/*progression: Progression*/){
+        self.state.send(.progressionChanging(stages))
         //      self.state.send(.ready)
     }
     

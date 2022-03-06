@@ -10,23 +10,24 @@ import SwiftUI
 import Combine
 import FirebaseFirestore
 
-class StageListViewModel : ObservableObject {
-    /*private let firestore = Firestore.firestore()
+class StageListViewModel : ObservableObject, Subscriber {
+    private let firestore = Firestore.firestore()
     
     //@Published var listDTO: [IngredientDTO] = []
-    @Published var recipes: [Recipe] = []
+    @Published var stages: [Stage] = []
     
-    init(_ recipes: [Recipe]) {
+    init(_ stages: [Stage]) {
         //self.listDTO = ingredients
         //fetchData()
         /*self.listDTO.forEach({ item in
             self.ingredients.append(Ingredient(id: item.id ?? UUID().uuidString, name: item.name, category: item.category, unit: item.unit,
                                                stock: item.stock, unitPrice: item.unitPrice, isAlergen: item.isAlergen))
         })*/
+        self.stages = stages
     }
 
     
-    typealias Input = RecipeIntentState
+    typealias Input = StageListIntentState
     typealias Failure = Never
     
     
@@ -40,32 +41,16 @@ class StageListViewModel : ObservableObject {
     }
 
      // Activée à chaque send() du publisher :
-    func receive(_ input: RecipeIntentState) -> Subscribers.Demand {
+    func receive(_ input: StageListIntentState) -> Subscribers.Demand {
        print("vm -> intent \(input)")
         switch input {
         case .ready:
             break
-        case .nameChanging(let name):
+        case .listUpdated:
             self.objectWillChange.send()
             print("sent objectWillChange")
             break
-        case .progressionChanging():
-            
        }
        return .none // on arrête de traiter cette demande et on attend un nouveau send
     }
-    
-    func delete(_ rec : Recipe) {
-        if let id = rec.id {
-            print(id)
-            firestore.collection("recipe").document(id).delete(completion: { err in
-                if let err = err { print(err) }
-                else {
-                    print("recipe deleted")
-                    self.objectWillChange.send()
-                }
-            })
-        }
-        else { print("element to delete has no id") }
-    }*/
 }

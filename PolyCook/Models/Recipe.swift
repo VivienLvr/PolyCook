@@ -10,12 +10,36 @@ import FirebaseFirestoreSwift
 
 class Recipe: Identifiable, Codable {
     @DocumentID var id: String? = UUID().uuidString
-    var name : String
-    var author : String
-    var covers : Int
-    var priceCoef : Double
-    var category : RecipeType
-    var progression : Progression
+    var name : String {
+        didSet {
+            self.observer?.change(name: self.name)
+        }
+    }
+    var author : String {
+        didSet {
+            self.observer?.change(author: self.author)
+        }
+    }
+    var covers : Int {
+        didSet {
+            self.observer?.change(covers: self.covers)
+        }
+    }
+    var priceCoef : Double {
+        didSet {
+            self.observer?.change(priceCoef: self.priceCoef)
+        }
+    }
+    var category : RecipeType {
+        didSet {
+            self.observer?.change(category: self.category)
+        }
+    }
+    var progression : Progression {
+        didSet {
+            self.observer?.change(progression: self.progression)
+        }
+    }
     
     init(id: String, name: String, author: String = "unknown", covers: Int = 0, priceCoef: Double = 0, category: RecipeType, progression: Progression = Progression(stages: [])) {
         self.id = id

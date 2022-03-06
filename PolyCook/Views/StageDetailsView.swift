@@ -10,21 +10,26 @@ import SwiftUI
 struct StageDetailsView: View {
     @State var recipe: Recipe
     @State var stage: Stage
+    var index: Int
     var recipes: [Recipe]
     @ObservedObject var VM: StageViewModel
+    @ObservedObject var listVM: StageListViewModel
     @ObservedObject var recipeVM: RecipeViewModel
     var intent = StageIntent()
     var stages: [Stage]
+    var recipeIntent = RecipeIntent()
     
-    init(stage: Stage, recipe: Recipe, recipes: [Recipe]) {
+    init(stage: Stage, recipe: Recipe, index: Int, recipes: [Recipe], intent: RecipeIntent) {
         self.stage = stage
         self.recipe = recipe
+        self.index = index
         self.recipes = recipes
+        stages = recipe.progression.stages// ?? []
         self.VM = StageViewModel(from: stage)
+        self.listVM = StageListViewModel(stages)
         self.recipeVM = RecipeViewModel(from: recipe)
-        stages = recipe.progression.stages ?? []
-        self.intent.addObserver(viewModel: VM, recipeVM: recipeVM)
-        
+        self.recipeIntent = intent
+        self.intent.addObserver(viewModel: VM, listVM: listVM)
     }
     
     let cols: [GridItem] = [
@@ -41,22 +46,42 @@ struct StageDetailsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             //Spacer()
-            LazyVGrid(columns: cols, spacing: 15) {
+            LazyVGrid(columns: cols, alignment: .leading, spacing: 15) {
                 Text("Titre de l'étape : ")
-                TextField("title", text: $stage.title)
+                TextField("title", text: $VM.title)
                     .classicTextFieldStyle()
                     .onSubmit {
-                        intent.intentToChange(title: stage.title)
-                        intent.updateRecipe()
-                    }
-                /*Text("Auteur : ")
-                TextField("author", text: $VM.author)
-                    .classicTextFieldStyle()
-                    .onSubmit {
-                        intent.intentToChange(author: VM.author)
+                        intent.intentToChange(title: VM.title)
+                        listVM.stages[index] = VM.model
+                        recipeIntent.intentToChange(stages: listVM.stages)
                         intent.updateList()
                     }
-                    
+                Text("Durée de l'étape : ")
+                HStack {
+                    TextField("duration", value: $VM.duration, formatter: formatter)
+                        .onSubmit {
+                            intent.intentToChange(duration: VM.duration)
+                            listVM.stages[index] = VM.model
+                            recipeIntent.intentToChange(stages: listVM.stages)
+                            intent.updateList()
+                        }
+                        .frame(width: 45)
+                    Text("minutes")
+                    Spacer()
+                }
+                
+                
+                Text("Description : ")
+                TextEditor(text: $VM.description)
+                    .classicTextEditorStyle()
+                    .onSubmit {
+                        intent.intentToChange(description: VM.description)
+                        listVM.stages[index] = VM.model
+                        recipeIntent.intentToChange(stages: listVM.stages)
+                        intent.updateList()
+                    }
+                    .frame(minHeight: 30)
+                   /*
                 Text("Catégorie : ")
                 Menu(VM.category.rawValue) {
                     ForEach(RecipeType.allCases, id: \.self) { type in
@@ -79,14 +104,7 @@ struct StageDetailsView: View {
                         onDecrement: {
                     intent.intentToChange(covers: VM.covers - 1)
                 })
-                Text("coefficient de prix : ")
-                HStack {
-                    TextField("priceCoef", value: $VM.priceCoef, formatter: formatter)
-                        .onSubmit {
-                            intent.intentToChange(priceCoef: VM.priceCoef)
-                            //intent.updateList()
-                        }
-                }*/
+                */
             }
             //.padding(30)
                             //.font(.custom("", size: 15))
@@ -108,7 +126,7 @@ struct StageDetailsView_Previews: PreviewProvider {
         StageDetailsView(stage: Stage(id: "", title: "Première étape", duration: 10, description: "", ingredients: [], phase: 1), recipe: Recipe(id: "0", name: "recipe test", covers: 10, category: .other, progression: Progression(stages: [
             Stage(id: "1", title: "stage 1", duration: 10, description: "", ingredients: [], phase: 1)
             , Stage(id: "2", title: "stage 2", duration: 20, description: "", ingredients: [], phase: 2)
-        ]))
-            , recipes: [])
+        ])), index: 1
+            , recipes: [], intent: RecipeIntent())
     }
 }
