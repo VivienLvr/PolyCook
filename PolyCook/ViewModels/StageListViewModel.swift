@@ -10,8 +10,8 @@ import SwiftUI
 import Combine
 import FirebaseFirestore
 
-class StageListViewModel : ObservableObject, Subscriber {
-    private let firestore = Firestore.firestore()
+class StageListViewModel : ObservableObject {
+    /*private let firestore = Firestore.firestore()
     
     //@Published var listDTO: [IngredientDTO] = []
     @Published var recipes: [Recipe] = []
@@ -49,7 +49,7 @@ class StageListViewModel : ObservableObject, Subscriber {
             self.objectWillChange.send()
             print("sent objectWillChange")
             break
-        case .progressionChanging(let prog):
+        case .progressionChanging():
             
        }
        return .none // on arrête de traiter cette demande et on attend un nouveau send
@@ -67,5 +67,5 @@ class StageListViewModel : ObservableObject, Subscriber {
             })
         }
         else { print("element to delete has no id") }
-    }
+    }*/
 }

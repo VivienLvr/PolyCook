@@ -24,7 +24,7 @@ struct RecipesListView: View {
         VStack {
             List {
                 ForEach(searchResults, id: \.id) { item in
-                    NavigationLink(destination: RecipeDetailsView(recipe: item, recipes: VM.recipes)) {
+                    NavigationLink(destination: RecipeDetailsView(recette: item, recettes: VM.recipes)) {
                         VStack(alignment: .leading){
                             //Text(item.id ?? "no id")
                             Text(item.name)

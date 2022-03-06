@@ -32,7 +32,7 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
         self.author = model.author //?? Unit.piece
         self.covers = model.covers //?? 0
         self.priceCoef = model.priceCoef
-        self.progression = model.progression ?? Progression(stages: [])
+        self.progression = model.progression// ?? Progression(stages: [])
         self.model.observer = self
     }
     
@@ -74,9 +74,10 @@ class RecipeViewModel: ObservableObject, Subscriber, RecipeOberver {
             self.model.category = category
             print("vm: model category changed to '\(self.model.category)'")
             //writeData()
-        case .progressionChanging(let progression):
-            self.model.progression = progression
-            print("vm: model progression changed to '\(self.model.progression)'")
+        case .progressionChanging:
+            self.objectWillChange.send()
+            //self.model.progression = progression
+            print("vm: model progression changed to '\(self.progression)'")
             //writeData()
         
        }

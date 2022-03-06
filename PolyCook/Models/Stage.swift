@@ -11,17 +11,21 @@ import FirebaseFirestoreSwift
 class Stage: Codable {
     @DocumentID var id: String? = UUID().uuidString
     var title: String
-    var duration: Int?
-    var description: String?
+    var duration: Int
+    var description: String
     var ingredients: [QuantityIngredient]?
+    var phase: Int
     
-    init(id: String, title: String, duration: Int, description: String = "", ingredients: [QuantityIngredient]?) {
+    init(id: String, title: String, duration: Int, description: String = "", ingredients: [QuantityIngredient]?, phase: Int) {
         self.id = id
         self.title = title
         self.duration = duration
         self.description = description
         self.ingredients = ingredients
+        self.phase = phase
     }
+    
+    var observer: StageOberver?
     
     
     /*required init(from decoder: Decoder) throws {
@@ -56,6 +60,7 @@ class Stage: Codable {
         case title
         case duration
         case description
+        case phase
         //case ingredients
     }
 }
@@ -63,4 +68,11 @@ class Stage: Codable {
 struct QuantityIngredient: Codable {
     var quantity: Int
     var ingredient: Ingredient
+}
+
+protocol StageOberver {
+    func change(title: String)
+    func change(description: String)
+    func change(duration: Int)
+    func change(ingredients: [QuantityIngredient])
 }
