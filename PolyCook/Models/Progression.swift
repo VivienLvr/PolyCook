@@ -21,7 +21,7 @@ class Progression: Codable {
         return sum
     }*/
     
-    var stages: [Stage]? = []
+    var stages: [Stage] = []
     
     init(duration: Int = 10, stages: [Stage]) {
         self.duration = duration
@@ -34,9 +34,9 @@ class Progression: Codable {
         duration = try container.decode(Int.self, forKey: .duration)
         var stagesContainer = try container.nestedUnkeyedContainer(forKey: .stages)
         while !stagesContainer.isAtEnd {
-            self.stages?.append(try stagesContainer.decode(Stage.self))
+            self.stages.append(try stagesContainer.decode(Stage.self))
         }
-        print("\(stages!.count) stages decoded")
+        print("\(stages.count) stages decoded")
     }
     
     private enum CodingKeys: String, CodingKey { case duration = "duration"; case stages = "stages" }

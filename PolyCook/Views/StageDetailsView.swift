@@ -24,9 +24,6 @@ struct StageDetailsView: View {
         self.recipeVM = RecipeViewModel(from: recipe)
         stages = recipe.progression.stages ?? []
         self.intent.addObserver(viewModel: VM, recipeVM: recipeVM)
-        if let stages = recipe.progression.stages {
-            print(stages.count)
-        }
         
     }
     

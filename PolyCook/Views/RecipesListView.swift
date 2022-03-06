@@ -83,7 +83,7 @@ struct RecipesListView: View {
     func onAdd() {
         //VM.listIngredients()
         print(VM.recipes.count)
-        let newRec = Recipe(id: "", name: "Nouvelle recette", category: .other)
+        let newRec = Recipe(id: "", name: "Nouvelle recette", author: "aucun", category: .other)
         VM.recipes.append(newRec)
         VM.insertRecipe(recipe: newRec)
         print("recipe added")

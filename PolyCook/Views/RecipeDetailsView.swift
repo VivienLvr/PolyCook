@@ -22,11 +22,11 @@ struct RecipeDetailsView: View {
         self.recipes = recettes
         self.VM = RecipeViewModel(from: recette)
         self.ListVM = RecipeListViewModel(recettes)
-        self.stages = recette.progression.stages ?? []
+        self.stages = recette.progression.stages// ?? []
         self.intent.addObserver(viewModel: VM, listVM: ListVM)
-        if let stages = recette.progression.stages {
+        /*if let stages = recette.progression.stages {
             print(stages.count)
-        }
+        }*/
     }
     
     let cols: [GridItem] = [
@@ -95,9 +95,9 @@ struct RecipeDetailsView: View {
             Spacer().frame(height: 30)
             Text("Progression").font(.title)
             List {
-                ForEach(stages.indices) { i in
-                    NavigationLink(destination: StageDetailsView(stage: stages[i], recipe: self.VM.model, recipes: self.recipes)) {
-                        Text("\(i+1) - \(stages[i].title) (\(stages[i].duration ?? 5) min)")
+                ForEach(VM.progression.stages.indices) { i in
+                    NavigationLink(destination: StageDetailsView(stage: VM.progression.stages[i], recipe: self.VM.model, recipes: self.recipes)) {
+                        Text("\(i+1) - \(VM.progression.stages[i].title) (\(VM.progression.stages[i].duration ?? 5) min)")
                     }
                 }
             }
@@ -124,7 +124,7 @@ struct RecipeDetailsView: View {
     
     func onAdd() {
         let newStage = Stage(id: "", title: "Nouvelle étape", duration: 0, description: "", ingredients: [], phase: 1)
-        VM.progression.stages?.append(newStage)
+        VM.progression.stages.append(newStage)
         VM.writeData()
         print("stage added")
     }
