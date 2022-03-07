@@ -34,17 +34,17 @@ struct HomePage: View {
           HomePageView()
               .tabItem {
                   Image(systemName:"house")
-                  Text("Home").font(.title)
+                  Text("Page d'accueil").font(.title)
           }
           IngredientsListView()
               .tabItem {
                   Image(systemName:"drop")
-                  Text("Ingredients")
+                  Text("Ingrédients")
           }
           RecipesListView()
               .tabItem {
                   Image(systemName:"cart")
-                  Text("Recipes")
+                  Text("Recettes")
           }
       }
 

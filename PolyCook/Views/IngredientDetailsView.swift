@@ -35,54 +35,65 @@ struct IngredientsDetailsView: View {
     
     var body: some View {
         HStack {
-            //Spacer().frame(width: )
-            LazyVGrid(columns: cols, spacing: 15) {
-                Text("Nom : ")
-                TextField("name", text: $VM.name)
-                    .classicTextFieldStyle()
-                    .onSubmit {
-                        intent.intentToChange(name: VM.name)
-                        intent.updateList()
+            VStack {
+                //Spacer().frame(width: )
+                LazyVGrid(columns: cols, spacing: 15) {
+                    Text("Nom : ")
+                    TextField("name", text: $VM.name)
+                        .classicTextFieldStyle()
+                        .onSubmit {
+                            intent.intentToChange(name: VM.name)
+                            intent.updateList()
+                        }
+                        
+                    Text("Catégorie : ")
+                    Menu(VM.category.rawValue) {
+                        ForEach(IngredientType.allCases, id: \.self) { type in
+                            Button(type.rawValue, action: {
+                                intent.intentToChange(category: type)
+                                //intent.updateList()
+                                //VM.category = type;
+                            })
+                        }
+                        /*for type in IngredientType.allCases {
+                            print(type.rawValue)
+                        }*/
+                    }
+                    //Text(ingredient.category.rawValue ?? "pas de type")
+                    Text("prix : ")
+                    HStack {
+                        TextField("unitPrice", value: $VM.unitPrice, formatter: formatter)
+                            .onSubmit {
+                                intent.intentToChange(unitPrice: VM.unitPrice)
+                                //intent.updateList()
+                            }
+                        Text("/ " + VM.unit.rawValue ?? "no unit")
+                    }
+                    Text("Stock : ")
+                    Stepper("\(VM.stock)", onIncrement: {
+                        intent.intentToChange(stock: VM.stock + 1)
+                        //VM.stock += 1
+                    },
+                            onDecrement: {
+                        intent.intentToChange(stock: VM.stock - 1)
+                        //VM.stock -= 1
+                    })
+                }
+                
+                Toggle("Alergène", isOn: $VM.isAlergen).frame(width: 200).padding(20)
+                    .onChange(of: VM.isAlergen) { value in
+                        // action...
+                        intent.intentToChange(isAlergen: VM.isAlergen)
                     }
                     
-                Text("Catégorie : ")
-                Menu(VM.category.rawValue) {
-                    ForEach(IngredientType.allCases, id: \.self) { type in
-                        Button(type.rawValue, action: {
-                            intent.intentToChange(category: type)
-                            //intent.updateList()
-                            //VM.category = type;
-                        })
-                    }
-                    /*for type in IngredientType.allCases {
-                        print(type.rawValue)
-                    }*/
-                }
-                //Text(ingredient.category.rawValue ?? "pas de type")
-                Text("prix : ")
-                HStack {
-                    TextField("unitPrice", value: $VM.unitPrice, formatter: formatter)
-                        .onSubmit {
-                            intent.intentToChange(unitPrice: VM.unitPrice)
-                            //intent.updateList()
-                        }
-                    Text("/ " + VM.unit.rawValue ?? "no unit")
-                }
-                Text("Stock : ")
-                Stepper("\(VM.stock)", onIncrement: {
-                    intent.intentToChange(stock: VM.stock + 1)
-                    //VM.stock += 1
-                },
-                        onDecrement: {
-                    intent.intentToChange(stock: VM.stock - 1)
-                    //VM.stock -= 1
-                })
             }
             .padding(30)
             .navigationTitle("Détails")
                 .font(.custom("", size: 25))
+            
             //Spacer().frame(width: 8)
         }
+        
         
     }
 }
