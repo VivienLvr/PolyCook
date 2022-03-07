@@ -87,7 +87,7 @@ struct IngredientsListView: View {
     func onAdd() {
         VM.listIngredients()
         print(VM.ingredients.count)
-        let newIngred = Ingredient(id: "", name: "new ingredient")
+        let newIngred = Ingredient(id: "", name: "nouvel ingrédient")
         VM.ingredients.append(newIngred)
         VM.insertIngredient(ingredient: newIngred)
         print("ingredient added")
