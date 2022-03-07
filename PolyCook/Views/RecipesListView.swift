@@ -21,55 +21,56 @@ struct RecipesListView: View {
     @State private var searchText = ""
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(searchResults, id: \.id) { item in
-                    NavigationLink(destination: RecipeDetailsView(recette: item, recettes: VM.recipes)) {
-                        VStack(alignment: .leading){
-                            //Text(item.id ?? "no id")
-                            Text(item.name)
-                        }
-                    }
-                }
-                .onDelete{ indexSet in
-                    self.showingAlert = true
-                    self.deleteIndexSet = indexSet
-                    for index in indexSet {
-                        print(index)
-                    }
-                }
-                .onMove{ indexSet, index in
-                    
-                }
-                .alert(isPresented: self.$showingAlert) {
-                    Alert(title: Text("Confirmation"), message: Text("Êtes-vous sûr de vouloir supprimer cette recette ?\n Cette action est irréversible."),
-                          primaryButton: .destructive(Text("Confirmer"), action:  {
-                        if let indexSet = self.deleteIndexSet {
-                            for index in indexSet {
-                                let removed = self.VM.recipes.remove(at: index)
-                                self.VM.delete(removed)
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(searchResults, id: \.id) { item in
+                        NavigationLink(destination: RecipeDetailsView(recette: item, recettes: VM.recipes)) {
+                            VStack(alignment: .leading){
+                                //Text(item.id ?? "no id")
+                                Text(item.name)
                             }
                         }
-                    }),
-                          secondaryButton: .cancel(Text("Annuler")))
+                    }
+                    .onDelete{ indexSet in
+                        self.showingAlert = true
+                        self.deleteIndexSet = indexSet
+                        for index in indexSet {
+                            print(index)
+                        }
+                    }
+                    .onMove{ indexSet, index in
+                        
+                    }
+                    .alert(isPresented: self.$showingAlert) {
+                        Alert(title: Text("Confirmation"), message: Text("Êtes-vous sûr de vouloir supprimer cette recette ?\n Cette action est irréversible."),
+                              primaryButton: .destructive(Text("Confirmer"), action:  {
+                            if let indexSet = self.deleteIndexSet {
+                                for index in indexSet {
+                                    let removed = self.VM.recipes.remove(at: index)
+                                    self.VM.delete(removed)
+                                }
+                            }
+                        }),
+                              secondaryButton: .cancel(Text("Annuler")))
+                    }
+                }
+                .navigationTitle("Liste des recettes")
+                HStack {
+                    Spacer()
+                    EditButton()
+                    Spacer()
+                    addButton
+                    Spacer()
                 }
             }
-            .navigationTitle("Liste des recettes")
-            HStack {
-                Spacer()
-                EditButton()
-                Spacer()
-                addButton
-                Spacer()
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .onAppear {
+                Task {
+                    self.VM.fetchData()
+                }
             }
-        }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-        .onAppear {
-            Task {
-                self.VM.fetchData()
-            }
-        }
-    }
+        } .navigationBarTitle("Recipes")    }
     
     private var addButton: some View {
         switch editMode {
